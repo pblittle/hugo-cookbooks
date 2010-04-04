@@ -13,11 +13,15 @@
 <% if @node[:hugo][:app][:ssl] %>
 <VirtualHost *:<%= @node[:hugo][:app][:web][:ssl]  %>>
   DocumentRoot /home/ubuntu/apps/<%= @node[:hugo][:app][:name] %>/current/public
-  
+  <% if @node[:hugo][:app][:ssl][:server_name] -%>
+  ServerName <%= @node[:hugo][:app][:ssl][:server_name] -%> 
+  <% end -%>
+
   SSLEngine on
   SSLCertificateFile /etc/ssl/certs/<%= @node[:hugo][:app][:url] %>.crt
   SSLCertificateKeyFile /etc/ssl/certs/<%= @node[:hugo][:app][:url] %>.key
+  <% if @node[:hugo][:app][:ssl][:gd_bundle] -%>
   SSLCertificateChainFile /etc/ssl/certs/gd_bundle.crt
-  
+  <% end -%>
 </VirtualHost>
 <% end %>
