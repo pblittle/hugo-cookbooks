@@ -3,11 +3,7 @@
   <% if @node[:hugo][:app][:web][:server_name] %>
   ServerName <%= @node[:hugo][:app][:web][:server_name] %> 
   <% end %>
-  <% if @node[:hugo][:app][:web][:server_aliases] %>
-    <% @node[:hugo][:app][:web][:server_aliases].each do |i| %>
-  ServerAlias <%= @node[:hugo][:app][:web][:server_aliases][i] %> 
-    <% end %>
-  <% end %>
+  <%= 'ServerAlias ' unless @node[:hugo][:app][:web][:server_aliases].empty? %><% @node[:hugo][:app][:web][:server_aliases].each do |a| %><%= a + ' ' %><% end %>
 </VirtualHost>
 
 <% if @node[:hugo][:app][:ssl] %>
