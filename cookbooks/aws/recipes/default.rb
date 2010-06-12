@@ -23,6 +23,5 @@ end
 
 r.run_action(:install)
 
-require 'rubygems'
 Gem.clear_paths
 require 'right_aws'

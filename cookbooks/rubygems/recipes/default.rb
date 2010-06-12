@@ -3,7 +3,7 @@
 # Cookbook Name:: rubygems
 # Recipe:: default
 #
-# Copyright 2009-2010, Opscode, Inc.
+# Copyright 2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
-execute "gem sources --add http://rubygems.org" do
-  not_if "gem sources --list | grep 'http://rubygems.org'"
+%w{ rubyforge.org opscode.com }.each do |domain|
+  execute "gem sources --add http://gems.#{domain}" do
+    not_if "gem sources --list | grep gems.#{domain}"
+  end
 end

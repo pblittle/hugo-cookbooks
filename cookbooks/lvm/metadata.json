@@ -1,8 +1,10 @@
 {
-    "maintainer": "Opscode, Inc.",
-    "attributes": {
+    "dependencies": {
     },
-    "suggestions": {
+    "replacing": {
+    },
+    "description": "Installs lvm2 package",
+    "groupings": {
     },
     "platforms": {
       "ubuntu": [
@@ -18,24 +20,22 @@
 
       ]
     },
-    "dependencies": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "conflicting": {
-    },
     "version": "0.7.0",
-    "name": "lvm",
-    "recipes": {
-    },
-    "providing": {
-    },
-    "license": "Apache 2.0",
-    "replacing": {
-    },
-    "groupings": {
-    },
-    "long_description": "",
     "recommendations": {
     },
-    "description": "Installs lvm2 package"
+    "name": "lvm",
+    "maintainer": "Opscode, Inc.",
+    "long_description": "",
+    "recipes": {
+    },
+    "suggestions": {
+    },
+    "maintainer_email": "cookbooks@opscode.com",
+    "attributes": {
+    },
+    "conflicting": {
+    },
+    "license": "Apache 2.0",
+    "providing": {
+    }
   }

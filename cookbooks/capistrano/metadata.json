@@ -1,8 +1,10 @@
 {
-    "maintainer": "Opscode, Inc.",
-    "attributes": {
+    "dependencies": {
     },
-    "suggestions": {
+    "replacing": {
+    },
+    "description": "Installs Capistrano gem and provides a define to set up deployment for an application",
+    "groupings": {
     },
     "platforms": {
       "freebsd": [
@@ -27,25 +29,23 @@
 
       ]
     },
-    "dependencies": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "conflicting": {
-    },
     "version": "0.7.0",
+    "recommendations": {
+    },
     "name": "capistrano",
+    "maintainer": "Opscode, Inc.",
+    "long_description": "",
     "recipes": {
       "capistrano": "Installs Capistrano gem"
     },
-    "providing": {
+    "suggestions": {
+    },
+    "maintainer_email": "cookbooks@opscode.com",
+    "attributes": {
+    },
+    "conflicting": {
     },
     "license": "Apache 2.0",
-    "replacing": {
-    },
-    "groupings": {
-    },
-    "long_description": "",
-    "recommendations": {
-    },
-    "description": "Installs Capistrano gem and provides a define to set up deployment for an application"
+    "providing": {
+    }
   }

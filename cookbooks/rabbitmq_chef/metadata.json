@@ -1,7 +1,10 @@
 {
+    "dependencies": {
+    },
     "replacing": {
     },
-    "attributes": {
+    "description": "Installs the RabbitMQ AMQP Broker",
+    "groupings": {
     },
     "platforms": {
       "ubuntu": [
@@ -20,25 +23,22 @@
 
       ]
     },
-    "groupings": {
-    },
-    "dependencies": {
-    },
-    "long_description": "",
+    "version": "0.10.0",
     "recommendations": {
     },
-    "version": "0.10.1",
-    "maintainer": "Opscode, Inc.",
     "name": "rabbitmq_chef",
-    "suggestions": {
-    },
+    "maintainer": "Opscode, Inc.",
+    "long_description": "",
     "recipes": {
     },
-    "license": "Apache 2.0",
+    "suggestions": {
+    },
     "maintainer_email": "cookbooks@opscode.com",
+    "attributes": {
+    },
     "conflicting": {
     },
+    "license": "Apache 2.0",
     "providing": {
-    },
-    "description": "Installs the RabbitMQ AMQP Broker for use on a Chef Server."
+    }
   }

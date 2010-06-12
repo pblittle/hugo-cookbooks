@@ -40,12 +40,7 @@ when "debian","ubuntu"
     end
     notifies value_for_platform(
       "debian" => { "4.0" => :run, "default" => :nothing  },
-      "ubuntu" => {
-        "default" => :nothing,
-        "9.04" => :run,
-        "8.10" => :run,
-        "8.04" => :run
-      }
+      "ubuntu" => { "default" => :run, "9.10" => :nothing }
     ), resources(:execute => "start-runsvdir"), :immediately
     notifies value_for_platform(
       "debian" => { "squeeze/sid" => :run, "default" => :nothing },
@@ -53,7 +48,7 @@ when "debian","ubuntu"
     ), resources(:execute => "runit-hup-init"), :immediately
   end
 
-  if node[:platform] =~ /ubuntu/i && node[:platform_version].to_f <= 8.04 
+  if node[:platform_version] <= "8.04" && node[:platform] =~ /ubuntu/i
     remote_file "/etc/event.d/runsvdir" do
       source "runsvdir"
       mode 0644

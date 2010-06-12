@@ -25,3 +25,4 @@ when "debian", "ubuntu"
 else
   package "erlang"
 end
+

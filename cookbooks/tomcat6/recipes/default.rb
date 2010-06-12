@@ -21,7 +21,6 @@
 
 service "tomcat6" do
   action :nothing
-  supports :status => true, :start => true, :stop => true, :restart => true
 end
 
 group node[:tomcat6][:user] do
@@ -34,7 +33,7 @@ user node[:tomcat6][:user] do
   shell "/bin/sh"
 end
 
-[node[:tomcat6][:temp],node[:tomcat6][:logs],node[:tomcat6][:webapp_base_dir],node[:tomcat6][:webapps],node[:tomcat6][:home],node[:tomcat6][:conf]].each do |dir|
+[node[:tomcat6][:temp],node[:tomcat6][:logs],node[:tomcat6][:webapps],node[:tomcat6][:home],node[:tomcat6][:conf]].each do |dir|
   directory dir do
     action :create
     mode 0755
@@ -136,7 +135,6 @@ when "centos"
 
   g.run_action(:install)
 
-  require 'rubygems'
   Gem.clear_paths
 
   require "snmp"
@@ -190,9 +188,7 @@ template "#{node[:tomcat6][:dir]}/tomcat6.conf" do
   group "#{node[:tomcat6][:user]}"
   owner "#{node[:tomcat6][:user]}"
   mode 0644
-  if File.exists?("/etc/god")
-    notifies :stop, resources(:service => "god"), :immediately
-  end
+  notifies :stop, resources(:service => "god"), :immediately
   notifies :restart, resources(:service => "tomcat6"), :immediately
 end
 

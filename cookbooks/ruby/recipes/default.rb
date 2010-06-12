@@ -28,7 +28,6 @@ extra_packages = case node[:platform]
       ruby1.8-dev
       rdoc1.8
       ri1.8
-      libshadow-ruby1.8
       libopenssl-ruby
     }
   when "centos","redhat","fedora"
