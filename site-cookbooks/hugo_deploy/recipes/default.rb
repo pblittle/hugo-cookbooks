@@ -1,19 +1,20 @@
 
+ssh_username = node[:ssh_username]
 appname = node[:hugo][:app][:name]
 app_branch = node[:hugo][:app][:branch] if node[:hugo][:app][:branch]
 repo_url = (node[:hugo][:app][:repo] || "#{node[:github][:url]}/#{appname}.git")
 
-directory "/home/ubuntu/apps/#{appname}" do
-  owner "ubuntu"
-  group "ubuntu"
+directory "/home/#{ssh_username}/apps/#{appname}" do
+  owner "#{ssh_username}"
+  group "#{ssh_username}"
   action :create
   recursive true
 end
 
 ['config', 'log','pids'].each do |d|
-  directory "/home/ubuntu/apps/#{appname}/shared/#{d}" do
-    owner "ubuntu"
-    group "ubuntu"
+  directory "/home/#{ssh_username}/apps/#{appname}/shared/#{d}" do
+    owner "#{ssh_username}"
+    group "#{ssh_username}"
     action :create
     recursive true
   end
@@ -22,25 +23,25 @@ end
 
 if node[:database] and node[:database][:name]
   ### Do Database config
-  template "/home/ubuntu/apps/#{appname}/shared/config/database.yml" do
-    owner "ubuntu"
-    group "ubuntu"
+  template "/home/#{ssh_username}/apps/#{appname}/shared/config/database.yml" do
+    owner "#{ssh_username}"
+    group "#{ssh_username}"
     source "database.erb"
   end
     
 end
 
 ### Apache Config
-template "/home/ubuntu/apps/#{appname}/shared/config/apache2.conf" do
-  owner "ubuntu"
-  group "ubuntu"  
+template "/home/#{ssh_username}/apps/#{appname}/shared/config/apache2.conf" do
+  owner "#{ssh_username}"
+  group "#{ssh_username}"  
   source "vhost.erb"
 end
 
 
-deploy "/home/ubuntu/apps/#{appname}" do
+deploy "/home/#{ssh_username}/apps/#{appname}" do
   repo repo_url
-  user node[:hugo][:app][:user] || "ubuntu"
+  user node[:hugo][:app][:user] || "#{ssh_username}"
   branch app_branch || "HEAD"
   environment node[:hugo][:app][:environment] || "production"
   if node[:hugo][:app][:restart_command]
@@ -64,7 +65,7 @@ deploy "/home/ubuntu/apps/#{appname}" do
 end
 
 # execute "ln" do
-#   command "ln -nsf /home/ubuntu/apps/#{appname}/shared/config/database.yml /home/ubuntu/apps/#{appname}/current/config/database.yml"
+#   command "ln -nsf /home/#{ssh_username}/apps/#{appname}/shared/config/database.yml /home/#{ssh_username}/apps/#{appname}/current/config/database.yml"
 #   action :run
 # end
 
@@ -102,14 +103,14 @@ file "/etc/apache2/sites-enabled/000-default" do
 end
 
 execute "ln" do
-  command "sudo ln -nsf /home/ubuntu/apps/#{appname}/shared/config/apache2.conf /etc/apache2/sites-enabled/#{appname}"
+  command "sudo ln -nsf /home/#{ssh_username}/apps/#{appname}/shared/config/apache2.conf /etc/apache2/sites-enabled/#{appname}"
   action :run
 end
 
 
 
 execute "ln" do
-  command "ln -nsf /home/ubuntu/apps/#{appname}/shared/log /home/ubuntu/apps/#{appname}/current/log"
+  command "ln -nsf /home/#{ssh_username}/apps/#{appname}/shared/log /home/#{ssh_username}/apps/#{appname}/current/log"
   action :run
 end
 
