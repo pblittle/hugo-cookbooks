@@ -2,7 +2,7 @@
   package pkg
 end
 
-remote_file "/tmp/s3fs-r177-source.tar.gz" do
+remote_file "/tmp/s3fs-r191-source.tar.gz" do
   source "http://s3fs.googlecode.com/files/s3fs-r191-source.tar.gz"
   mode 0644
 end
