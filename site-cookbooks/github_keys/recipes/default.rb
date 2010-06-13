@@ -1,4 +1,4 @@
-current_user = node[:current_user]
+current_user = 'ubuntu'
 
 directory '/home/#{current_user}/.ssh' do
   owner "#{current_user}"

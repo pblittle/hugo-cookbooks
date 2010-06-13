@@ -1,5 +1,5 @@
 
-current_user = node[:current_user]
+current_user = 'ubuntu'
 appname = node[:hugo][:app][:name]
 app_branch = node[:hugo][:app][:branch] if node[:hugo][:app][:branch]
 repo_url = (node[:hugo][:app][:repo] || "#{node[:github][:url]}/#{appname}.git")
