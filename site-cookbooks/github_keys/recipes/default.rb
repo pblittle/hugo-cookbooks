@@ -1,43 +1,43 @@
-ssh_username = node[:ssh_username]
+current_user = node[:current_user]
 
-directory '/home/#{ssh_username}/.ssh' do
-  owner "#{ssh_username}"
-  group "#{ssh_username}"
+directory '/home/#{current_user}/.ssh' do
+  owner "#{current_user}"
+  group "#{current_user}"
   mode "0700"
   action :create
   recursive true
 end
 
-template "/home/#{ssh_username}/.ssh/id_rsa" do
-  owner "#{ssh_username}"
-  group "#{ssh_username}"
+template "/home/#{current_user}/.ssh/id_rsa" do
+  owner "#{current_user}"
+  group "#{current_user}"
   mode "0600"
   source "privatekey.erb"
   variables :privatekey => node[:github][:privatekey]
-  not_if { File.exists?("/home/#{ssh_username}/.ssh/id_rsa") }
+  not_if { File.exists?("/home/#{current_user}/.ssh/id_rsa") }
 end
 
-template "/home/#{ssh_username}/.ssh/id_rsa.pub" do
-  owner "#{ssh_username}"
-  group "#{ssh_username}"
+template "/home/#{current_user}/.ssh/id_rsa.pub" do
+  owner "#{current_user}"
+  group "#{current_user}"
   mode "0600"
   source "publickey.erb"
   variables :publickey => node[:github][:publickey]
-  not_if { File.exists?("/home/#{ssh_username}/.ssh/id_rsa.pub") }
+  not_if { File.exists?("/home/#{current_user}/.ssh/id_rsa.pub") }
 end
 
-template "/home/#{ssh_username}/.ssh/config" do
-  owner "#{ssh_username}"
-  group "#{ssh_username}"
+template "/home/#{current_user}/.ssh/config" do
+  owner "#{current_user}"
+  group "#{current_user}"
   mode "0600"
   source "config.erb"
   variables :application => node[:application]
-  not_if { File.exists?("/home/#{ssh_username}/.ssh/config") }
+  not_if { File.exists?("/home/#{current_user}/.ssh/config") }
 end
 
-# template "/home/#{ssh_username}/.ssh/known_hosts" do
-#   owner "#{ssh_username}"
-#   group "#{ssh_username}"
+# template "/home/#{current_user}/.ssh/known_hosts" do
+#   owner "#{current_user}"
+#   group "#{current_user}"
 #   mode "0600"
 #   source "known_hosts.erb"
 #   variables :known_hosts => node[:ssh][:known_hosts]

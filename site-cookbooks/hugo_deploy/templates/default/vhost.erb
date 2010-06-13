@@ -1,5 +1,5 @@
 <VirtualHost *:<%= @node[:hugo][:app][:web][:port]  %>>
-  DocumentRoot /home/<%= @node[:ssh_username] %>/apps/<%= @node[:hugo][:app][:name] %>/current/public
+  DocumentRoot /home/<%= @node[:current_user] %>/apps/<%= @node[:hugo][:app][:name] %>/current/public
   <% if @node[:hugo][:app][:web][:server_name] %>
   ServerName <%= @node[:hugo][:app][:web][:server_name] %> 
   <% end %>
@@ -8,7 +8,7 @@
 
 <% if @node[:hugo][:app][:ssl] %>
 <VirtualHost *:<%= @node[:hugo][:app][:web][:ssl]  %>>
-  DocumentRoot /home/<%= @node[:ssh_username] %>/apps/<%= @node[:hugo][:app][:name] %>/current/public
+  DocumentRoot /home/<%= @node[:current_user] %>/apps/<%= @node[:hugo][:app][:name] %>/current/public
   <% if @node[:hugo][:app][:ssl][:server_name] -%>
   ServerName <%= @node[:hugo][:app][:ssl][:server_name] -%> 
   <% end -%>
